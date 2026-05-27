@@ -22,10 +22,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InsufficientResultsException.class)
     public ResponseEntity<Map<String, Object>> handleInsufficientResults(InsufficientResultsException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(Map.of(
                 "timestamp", LocalDateTime.now().toString(),
-                "status", 404,
-                "error", "Not Found",
+                "status", 422,
+                "error", "Unprocessable Entity",
                 "message", ex.getMessage()
         ));
     }
